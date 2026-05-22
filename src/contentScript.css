@@ -1,0 +1,103 @@
+.custom-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group-icg {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-table-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.progress {
+  height: 25px;
+  background: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-bar {
+  background: #007bff;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+  transition: width 0.3s;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.parcel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  gap: 10px; /* Adds space between elements */
+}
+
+.parcel-item span {
+  flex-shrink: 0;
+  width: 20px; /* Ensure number stays in place */
+  text-align: center;
+}
+
+.parcel-item .form-control {
+  flex-grow: 1;
+  max-width: 150px; /* Ensure input width */
+}
+
+.remove-parcel {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.remove-parcel:hover {
+  background-color: #c82333;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}

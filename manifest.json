@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "GLS CZ - integracja z Apilo",
+  "version": "1.8",
+  "description": "Rozszerzenie łączące Apilo z GLS CZ by iConfig.pl",
+  "permissions": [
+    "storage",
+    "alarms", "downloads"
+  ],
+  "host_permissions": [
+    "http://localhost:8080/*"
+  ],
+  "content_scripts": [
+    {
+      "js": [
+        "contentScript.js"
+      ],
+      "matches": [
+        "https://*.apilo.com/*", "https://*.apilo.dev/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  }
+}
