@@ -1,12 +1,8 @@
 import "./contentScript.css";
-import { orderNumberList } from "./ordersFunction";
-import {
-    addLabelToBackground,
-    clearPdfLabelsInBackground,
-    downloadMergedPdfFromBackground,
-} from "./pdfService.js";
+import {orderNumberList} from "./ordersFunction";
+import {addLabelToBackground, clearPdfLabelsInBackground, downloadMergedPdfFromBackground,} from "./pdfService.js";
 
-import { convertHomeToCompanyButton } from "./orderEditView.js";
+import {convertHomeToCompanyButton} from "./orderEditView.js";
 
 const PATHNAME = window.location.pathname;
 
@@ -165,7 +161,7 @@ const createModal = () => {
 
           <div class="mb-3 hidden" id="glsCommentContainer">
               <label for="glsLabelComment">Komentarz na etykiecie</label>
-              <input type="text" id="glsParcelComment" class="form-control"></input>
+              <input type="text" id="glsParcelComment" class="form-control">
           </div>
 
           <div id="orderPreviewContainer" class="order-preview-container"></div>
@@ -181,7 +177,7 @@ const createModal = () => {
 
         <div id="progressContainer" class="progress">
           <div id="progressBar" class="progress-bar" role="progressbar" 
-               style="width: 0%;" aria-valuemin="0" aria-valuemax="100">
+               style="width: 0;" aria-valuemin="0" aria-valuemax="100">
             0%
           </div>
         </div>
@@ -303,7 +299,7 @@ const setupDownloadLabelsAction = (modal) => {
                     response?.error ||
                     "Nie udało się pobrać etykiet. Spróbuj ponownie."
                 );
-                return;
+
             }
         } catch (error) {
             console.error("GLS merge/download PDF exception:", error);
@@ -737,7 +733,7 @@ function glsCzResponseError(response) {
 }
 
 const displayResultsTable = (orderResults) => {
-    const tableHtml = `
+    document.getElementById("resultTableContainer").innerHTML = `
     <table border="1" cellspacing="0" cellpadding="5" class="table table-striped">
       <thead>
         <tr>
@@ -773,7 +769,6 @@ const displayResultsTable = (orderResults) => {
       </tbody>
     </table>
   `;
-    document.getElementById("resultTableContainer").innerHTML = tableHtml;
 };
 
 function displayServiceName(service) {

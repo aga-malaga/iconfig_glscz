@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import {PDFDocument} from "pdf-lib";
 
 const PdfServiceMessageType = {
   ADD_LABEL: "PDF_SERVICE_ADD_LABEL",
@@ -130,8 +130,7 @@ async function mergeLabelEntriesToSinglePdfBytes(labelEntries) {
     }
   }
 
-  const mergedBytes = await mergedPdfDocument.save();
-  return mergedBytes;
+  return await mergedPdfDocument.save();
 }
 
 function buildPdfDataUrlFromBytes(pdfBytes) {
