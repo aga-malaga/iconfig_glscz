@@ -67,7 +67,7 @@ function createConvertHomeToCompanyButtonElement() {
   buttonElement.id = CONVERT_HOME_TO_COMPANY_BUTTON_ID;
   buttonElement.type = "button";
   buttonElement.className = "btn btn-xs btn-secondary";
-  buttonElement.textContent = "Typ Domowy na Firmowy";
+  buttonElement.textContent = "Typ domowy na firmowy";
 
   return buttonElement;
 }
@@ -86,8 +86,6 @@ function getDeliveryAddressSnapshot(deliveryContainerElement) {
   fieldElements.forEach((fieldElement) => {
     const fieldName = fieldElement.name;
     if (!fieldName) {
-      console.log("skip1", fieldName);
-
       return;
     }
 
@@ -95,7 +93,6 @@ function getDeliveryAddressSnapshot(deliveryContainerElement) {
       fieldElement.id === "order_addressDelivery_type" ||
       fieldName === "order[addressDelivery][type]"
     ) {
-      console.log("skip2", fieldName);
       return;
     }
 
@@ -124,7 +121,6 @@ function applyDeliveryAddressSnapshot(
     }
 
     if (!(fieldName in snapshotByFieldName)) {
-      console.log("return", fieldName);
       return;
     }
 
@@ -172,8 +168,6 @@ function handleConvertHomeToCompanyAddressClick(event) {
   const currentAddressSnapshot = getDeliveryAddressSnapshot(
     deliveryContainerElement
   );
-
-  console.log(currentAddressSnapshot);
 
   addressTypeSelectElement.value = "company";
   const changeEvent = new Event("change", { bubbles: true });

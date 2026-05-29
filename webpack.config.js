@@ -6,13 +6,17 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    popup: "./src/popup.js",
+    options: "./src/options/options.js",
     contentScript: "./src/contentScript.js",
     background: "./src/background.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
+    clean: true,
+  },
+  performance: {
+    assetFilter: (assetFilename) => assetFilename !== "background.js",
   },
   module: {
     rules: [
@@ -34,9 +38,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "popup.html",
-      template: "./src/popup.html",
-      chunks: ["popup"],
+      filename: "options.html",
+      template: "./src/options/options.html",
+      chunks: ["options"],
     }),
     new webpack.ProvidePlugin({
       process: "process/browser",

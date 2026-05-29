@@ -6,6 +6,10 @@ const PdfServiceMessageType = {
   MERGE_AND_DOWNLOAD: "PDF_SERVICE_MERGE_AND_DOWNLOAD",
 };
 
+const OptionsMessageType = {
+  OPEN_OPTIONS: "OPEN_OPTIONS",
+};
+
 const PDF_SESSION_KEY = "pdfServiceState";
 const DEFAULT_MERGED_FILENAME_PREFIX = "gls-etykiety";
 
@@ -232,6 +236,12 @@ function handleMergeAndDownloadMessage(message, sendResponse) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message?.type === OptionsMessageType.OPEN_OPTIONS) {
+    chrome.runtime.openOptionsPage();
+    sendResponse({ ok: true });
+    return;
+  }
+
   if (!message || typeof message.type !== "string") {
     return;
   }
@@ -250,4 +260,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     handleMergeAndDownloadMessage(message, sendResponse);
     return true;
   }
+});
+
+chrome.action.onClicked.addListener(() => {
+  chrome.runtime.openOptionsPage();
 });

@@ -10,6 +10,12 @@
   "host_permissions": [
     "http://localhost:8080/*"
   ],
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "content_scripts": [
     {
       "js": [
@@ -23,9 +29,13 @@
   "background": {
     "service_worker": "background.js"
   },
+  "options_page": "options.html",
   "action": {
-    "default_popup": "popup.html",
+    "default_title": "Ustawienia GLS CZ",
     "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
       "128": "icon.png"
     }
   }

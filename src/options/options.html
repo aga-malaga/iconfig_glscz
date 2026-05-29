@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Integracja GLS CZ - Ustawienia</title>
+  </head>
+  <body>
+    <main class="settings-page">
+      <header class="brand-header">
+        <div class="brand">
+          <img src="icon.png" alt="GLS CZ" />
+          <div>
+            <h1>Integracja GLS CZ</h1>
+            <p>Ustawienia połączenia, wydruku i nadawców</p>
+          </div>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Sekcje ustawień">
+        <button class="tab active" type="button" data-tab="gls">GLS CZ</button>
+        <button class="tab" type="button" data-tab="apilo">Apilo API</button>
+      </nav>
+
+      <section id="gls" class="panel active">
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Backend GLS CZ</h2>
+            </div>
+            <button class="secondary" id="saveBackendSettings" type="button">
+              Zapisz backend
+            </button>
+          </div>
+
+          <div class="grid">
+            <label>
+              X-API-KEY
+              <input id="backendApiKey" type="text" />
+            </label>
+            <label>
+              Kod licencji
+              <input id="userUuid" type="text" />
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Konfiguracja konta GLS CZ</h2>
+            </div>
+            <button class="secondary" id="saveGlsCzConfig" type="button">
+              Zapisz konfigurację GLS CZ
+            </button>
+          </div>
+
+          <div class="grid">
+            <label>
+              Login GLS
+              <input id="glsUsername" type="email" />
+            </label>
+            <label>
+              Hasło GLS
+              <input id="glsPassword" type="password" />
+            </label>
+            <label>
+              Numer klienta
+              <input id="glsClientNumber" type="number" min="1" />
+            </label>
+            <label class="checkbox-label">
+              <input id="glsSandbox" type="checkbox" />
+              Sandbox
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Wydruk i etykiety</h2>
+              <p>Domyślna drukarka PrintNode oraz treść komentarza.</p>
+            </div>
+            <button class="secondary" id="saveLabelSettings" type="button">
+              Zapisz etykiety
+            </button>
+          </div>
+
+          <div class="grid">
+            <label>
+              ID drukarki PrintNode
+              <input
+                id="printNodePrinterId"
+                type="text"
+              />
+            </label>
+            <label>
+              Komentarz na etykiecie
+              <select id="labelCommentOption">
+                <option value="orderNumber">Numer zamówienia</option>
+                <option value="skuOnly">SKU produktów</option>
+                <option value="quantityAndSku">Ilość + SKU produktów</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Nadawcy GLS CZ</h2>
+              <p>Adresy widoczne przy tworzeniu przesyłki w Apilo.</p>
+            </div>
+            <button class="secondary" id="addSenderAccount" type="button">
+              Dodaj nadawcę
+            </button>
+          </div>
+
+          <div id="senderAccounts"></div>
+        </section>
+      </section>
+
+      <section id="apilo" class="panel">
+        <section class="section">
+          <div class="section-header">
+            <div>
+              <h2>Połączenie z API Apilo</h2>
+              <p>Po poprawnym połączeniu token zostanie zapisany lokalnie.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <label>
+              Alias Apilo
+              <input id="aliasInput" type="text" />
+            </label>
+            <label>
+              Client ID
+              <input id="idInput" type="text" />
+            </label>
+            <label>
+              Client Secret
+              <input
+                id="secretInput"
+                type="text"
+              />
+            </label>
+            <label>
+              Kod autoryzacji
+              <input
+                id="codeInput"
+                type="text"
+              />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="save" id="apiConnectButton" type="button">
+              Połącz
+            </button>
+            <button class="secondary hidden" id="apiResetButton" type="button">
+              Wprowadź dane ponownie
+            </button>
+            <a
+              href="https://iconfig.pl/instrukcje/zakladki_do_apilo_manual.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Jak wygenerować klucze API
+            </a>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

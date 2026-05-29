@@ -15,7 +15,7 @@
   background: white;
   padding: 20px;
   border-radius: 5px;
-  width: 600px;
+  width: 820px;
   max-width: 90%;
   max-height: 90vh;
   overflow-y: auto;
@@ -100,4 +100,170 @@
 
 .hidden {
   display: none;
+}
+
+.order-preview-container {
+  margin: 12px 0;
+}
+
+.order-preview-loading,
+.empty-preview {
+  color: #6c757d;
+  font-size: 13px;
+  margin: 0;
+}
+
+.order-preview-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.order-preview-card summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  list-style: none;
+  padding: 10px 12px;
+}
+
+.order-preview-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.order-preview-card summary::after {
+  color: #6c757d;
+  content: "Rozwiń";
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.order-preview-card[open] summary {
+  border-bottom: 1px solid #ddd;
+}
+
+.order-preview-card[open] summary::after {
+  content: "Zwiń";
+}
+
+.order-preview-card summary span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.order-preview-card summary small {
+  color: #6c757d;
+}
+
+.order-preview-card summary .order-payment-badge {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.order-preview-link {
+  color: #343a40;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.order-preview-link:hover {
+  text-decoration: underline;
+}
+
+.order-parcel-count {
+  align-items: center;
+  color: #343a40;
+  cursor: default;
+  display: flex;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.order-parcel-count input {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  height: 32px;
+  padding: 4px 8px;
+  width: 72px;
+}
+
+.order-preview-card-error summary small {
+  color: #dc3545;
+}
+
+.order-preview-body {
+  background: #f8f9fa;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  padding: 12px;
+}
+
+.order-preview-body h5 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.order-preview-body address {
+  font-style: normal;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.order-products-table {
+  background: white;
+  margin-bottom: 0;
+}
+
+.order-products-table th,
+.order-products-table td {
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.order-product-image,
+.order-product-image-placeholder {
+  align-items: center;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.order-product-image {
+  object-fit: cover;
+}
+
+.order-product-image-placeholder {
+  background: #f1f3f5;
+  color: #868e96;
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  .form-group-icg,
+  .order-preview-body {
+    display: block;
+  }
+
+  .order-preview-card summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .order-parcel-count {
+    margin-left: 0;
+  }
 }
