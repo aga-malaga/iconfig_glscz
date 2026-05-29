@@ -850,27 +850,19 @@ async function uploadLabel(response, orderId, printType) {
 
         await wait(APILO_MEDIA_READY_DELAY_MS);
 
-        const shipmentNumbersFromResponse = parcelInfos
-            .map((parcelInfo) => parcelInfo.ParcelNumber)
-            .filter(Boolean);
-        const shipmentNumbers = shipmentNumbersFromResponse.length
-            ? [...new Set(shipmentNumbersFromResponse)]
-            : [filename];
+        const tracking = String(firstParcel.ParcelNumber || orderId);
 
-        for (const shipmentNumber of shipmentNumbers) {
-            const tracking = String(shipmentNumber);
-            const shipmentResult = await createApiloShipmentWithRetry(
-                orderId,
-                tracking,
-                mediaUuid
-            );
+        const shipmentResult = await createApiloShipmentWithRetry(
+            orderId,
+            tracking,
+            mediaUuid
+        );
 
-            if (!shipmentResult.ok) {
-                return {
-                    ok: false,
-                    status: shipmentResult.status,
-                };
-            }
+        if (!shipmentResult.ok) {
+            return {
+                ok: false,
+                status: shipmentResult.status,
+            };
         }
 
         processPrint(mediaUuid, printType);
