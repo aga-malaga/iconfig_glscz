@@ -50,21 +50,26 @@ let userUuid = "";
 
 async function init() {
     try {
-        const result = await chrome.storage.local.get([
-            "apiData",
-            "settings",
-            "accounts",
-        ]);
-        apiData = result.apiData || false;
-        printerId = result?.settings?.printerId || false;
-        labelComment = result?.settings?.labelComment || "orderNumber";
-        backendApiKey = result?.settings?.apiKey || "";
-        userUuid = result?.settings?.userUuid || "";
-        senderAccounts = result.accounts || [];
+        await refreshExtensionSettings();
         createGlsButton();
     } catch (error) {
         console.error("Błąd pobierania ustawień:", error);
     }
+}
+
+async function refreshExtensionSettings() {
+    const result = await chrome.storage.local.get([
+        "apiData",
+        "settings",
+        "accounts",
+    ]);
+
+    apiData = result.apiData || false;
+    printerId = result?.settings?.printerId || false;
+    labelComment = result?.settings?.labelComment || "orderNumber";
+    backendApiKey = result?.settings?.apiKey || "";
+    userUuid = result?.settings?.userUuid || "";
+    senderAccounts = Array.isArray(result.accounts) ? result.accounts : [];
 }
 
 function injectOptionsLink() {
@@ -210,16 +215,31 @@ const appendElementsToDOM = (button, modal) => {
 
 const populateSenderAccounts = (modal) => {
     const select = modal.querySelector("#senderAccountGls");
+    const selectedValue = select.value;
+    select.textContent = "";
+
+    const emptyOption = document.createElement("option");
+    emptyOption.value = "";
+    emptyOption.textContent = "-- Wybierz --";
+    select.appendChild(emptyOption);
+
     senderAccounts.forEach((account, index) => {
         const option = document.createElement("option");
         option.value = String(index);
         option.textContent = account.name || `Nadawca ${index + 1}`;
         select.appendChild(option);
     });
+
+    if (selectedValue && Number(selectedValue) < senderAccounts.length) {
+        select.value = selectedValue;
+    }
 };
 
-const handleGlsButtonClick = (event, modal) => {
+const handleGlsButtonClick = async (event, modal) => {
     event.preventDefault();
+    await refreshExtensionSettings();
+    populateSenderAccounts(modal);
+
     if (!apiData) {
         alert("Połącz API Apilo");
         return;
